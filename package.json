@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"build": "tsc --noEmit & esbuild ./src/index.ts --outdir=./out --minify --sourcemap --platform=browser & node-sass ./src/index.sass ./out/index.css && postcss ./out/index.css -o ./out/index.css -u autoprefixer cssnano --no-map & pug ./src/index.pug -o ./out"
+		"build": "tsc --noEmit & esbuild ./src/index.ts --outdir=./docs --minify --sourcemap --platform=browser & node-sass ./src/index.sass ./docs/index.css && postcss ./docs/index.css -o ./docs/index.css -u autoprefixer cssnano --no-map & pug ./src/index.pug -o ./docs"
 	},
 	"devDependencies": {
 		"autoprefixer": "^10.3.1",
