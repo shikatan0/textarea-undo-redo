@@ -2,7 +2,7 @@
 
 online [here](https://shikatan0.github.io/textarea-undo-redo/).
 
-# Build
+## Build
 
 ```
 npm i
