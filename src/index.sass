@@ -1,0 +1,52 @@
+*
+	box-sizing : border-box
+
+html
+	width       : 100%
+	height      : 100%
+	font-size   : 16px
+	font-family : monospace
+
+body
+	margin  : 0
+	padding : 16px
+	width   : 100%
+	height  : 100%
+
+p
+	margin : 0 0 8px
+
+
+.app
+	display        : flex
+	flex-direction : column
+	width          : 100%
+	height         : 100%
+
+.log
+	width           : 100%
+	height          : 72%
+	display         : flex
+	justify-content : space-between
+
+.item
+	display        : flex
+	flex-direction : column
+	width          : calc(50% - 8px)
+	margin-bottom  : 16px
+
+#undo
+	flex-grow : 1
+	border    : 1px solid #000
+	overflow  : auto
+
+#redo
+	flex-grow : 1
+	border    : 1px solid #000
+	overflow  : auto
+
+#textarea
+	flex-grow  : 1
+	padding    : 8px
+	resize     : none
+	word-break : break-all
