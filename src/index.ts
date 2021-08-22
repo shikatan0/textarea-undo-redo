@@ -1,15 +1,73 @@
-// Undo/Redo 無効化
-document.body.addEventListener('keydown', (event) => {
-	if (event.ctrlKey) {
-		switch (event.key) {
-		case 'z':
-		case 'y':
-			event.preventDefault()
+const textarea = document.getElementById('textarea') as HTMLTextAreaElement
+// Mac 対応
+if (navigator.userAgent.toLowerCase().indexOf('mac os') !== -1) {
+	// Mac: ショートカットキーの表示を変更する
+	const undoKeyHint = document.getElementById('undoKey')
+	undoKeyHint.textContent = '[command]+[z]'
+	const redoKeyHint = document.getElementById('redoKey')
+	redoKeyHint.textContent = '[command]+[shift]+[z]'
+	// Mac: Undo/Redo 無効化
+	document.body.addEventListener('keydown', (event) => {
+		if (event.metaKey) {
+			switch (event.key) {
+			case 'z':
+				event.preventDefault()
+				return
+			}
+		}
+	})
+	// Mac: ショートカットキー
+	textarea.addEventListener('keydown', (event) => {
+		if (!event.metaKey) {
 			return
 		}
-	}
-})
-const textarea = document.getElementById('textarea') as HTMLTextAreaElement
+		switch (event.key) {
+		case 'z':
+			if (!event.shiftKey) {
+				undoAction()
+				return
+			}
+			else {
+				redoAction()
+				return
+			}
+		}
+	})
+}
+// Mac 以外
+else {
+	// Undo/Redo 無効化
+	document.body.addEventListener('keydown', (event) => {
+		if (event.ctrlKey) {
+			switch (event.key) {
+			case 'z':
+			case 'y':
+				event.preventDefault()
+				return
+			}
+		}
+	})
+	// ショートカットキー
+	textarea.addEventListener('keydown', (event) => {
+		if (!event.ctrlKey) {
+			return
+		}
+		switch (event.key) {
+		case 'z':
+			if (!event.shiftKey) {
+				undoAction()
+				return
+			}
+			else {
+				redoAction()
+				return
+			}
+		case 'y':
+			redoAction()
+			return
+		}
+	})
+}
 let lastValue = ''
 textarea.addEventListener('input', (event: InputEvent) => {
 	switch (event.inputType) {
@@ -19,26 +77,6 @@ textarea.addEventListener('input', (event: InputEvent) => {
 		return
 	default:
 		lastValue = textarea.value
-		return
-	}
-})
-// ショートカットキー
-textarea.addEventListener('keydown', (event) => {
-	if (!event.ctrlKey) {
-		return
-	}
-	switch (event.key) {
-	case 'z':
-		if (!event.shiftKey) {
-			undoAction()
-			return
-		}
-		else {
-			redoAction()
-			return
-		}
-	case 'y':
-		redoAction()
 		return
 	}
 })

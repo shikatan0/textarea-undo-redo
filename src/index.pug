@@ -10,10 +10,15 @@ html(lang="ja")
 		.app
 			.log
 				.item
-					p Undo [ctrl]+[z]
+					.caption
+						p Undo
+						#undoKey [ctrl]+[z]
 					#undo
 				.item
-					p Redo [ctrl]+[shift]+[z], [ctrl]+[y]
+					.caption
+						p Redo
+						#redoKey [ctrl]+[shift]+[z], [ctrl]+[y]
 					#redo
-			p textarea
+			.caption
+				p textarea
 			textarea#textarea
