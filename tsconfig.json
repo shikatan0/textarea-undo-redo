@@ -4,7 +4,7 @@
 		"module": "ESNext",
 		"lib": ["ESNext", "DOM"],
 		"sourceMap": true,
-		"outDir": "out"
+		"outDir": "docs"
 	},
 	"include": [
 		"src"
